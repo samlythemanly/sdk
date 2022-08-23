@@ -133,6 +133,10 @@ typedef void _TimerCallback();
 /// A broadcast stream inheriting from [Stream] must override [isBroadcast]
 /// to return `true` if it wants to signal that it behaves like a broadcast
 /// stream.
+///
+/// A Stream should be inert until a subscriber starts listening on it (using
+/// the [onListen] callback to start producing events). Streams should not
+/// leak resources (like websockets) when no user ever listens on the stream.
 abstract class Stream<T> {
   Stream();
 
